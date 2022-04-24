@@ -1,13 +1,15 @@
-import OrderModel from '../models/orderModel.js'
-import DatabaseHandler from '../databaseHandler.js'
+import OrderModel from '../Database/models/orderModel.js'
+import DatabaseHandler from '../Database/databaseHandler.js'
 
-class OrderRepository {
+export default class OrderRepository {
     constructor(connection) {
         this.databaseHandler = new DatabaseHandler(connection)
     }
 
     getOrderId(id) {
-        let sql = `SELECT * FROM tracker.order where id=${id}`;
+        let sql = `SELECT *
+                   FROM tracker.order
+                   where id = ${id}`;
         let results = this.databaseHandler.makeQuery(sql);
 
         if (!results.length) {
@@ -18,7 +20,8 @@ class OrderRepository {
     }
 
     getOrders() {
-        let sql = `SELECT * FROM tracker.order`;
+        let sql = `SELECT *
+                   FROM tracker.order`;
         let results = this.databaseHandler.makeQuery(sql);
 
         if (!results.length) {
@@ -32,7 +35,7 @@ class OrderRepository {
 
     insertOrder(orderModel) {
         let sql = `Insert into tracker.order ('title', 'chapter_start', 'chapter_finish', 'type', 'dtc')
-         values(order.title, order.chapter_start, order.chapter_finish, order.type, order.dtc)`
+                   values (order.title, order.chapter_start, order.chapter_finish, order.type, order.dtc)`
 
         let results = this.databaseHandler.makeInsert(sql);
 

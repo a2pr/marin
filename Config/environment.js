@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
 
-export const loadEnvironment = function (){
+export default function loadEnvironment(){
     dotenv.config({path: "../.env"})
 }

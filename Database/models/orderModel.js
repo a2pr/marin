@@ -1,5 +1,5 @@
-class OrderModel{
-    constructor(id, title, chapterStart, chapterFinish,  type, dtc) {
+class OrderModel {
+    constructor(id, title, chapterStart, chapterFinish, type, dtc) {
         this._title = title;
         this._chapterStart = chapterStart;
         this._chapterFinish = chapterFinish;
@@ -8,7 +8,7 @@ class OrderModel{
         this._id = id;
     }
 
-    get id(){
+    get id() {
         return this._id;
     }
 
@@ -50,6 +50,17 @@ class OrderModel{
 
     set dtc(value) {
         this._dtc = value;
+    }
+
+    getResponse() {
+        return {
+            id: this.id,
+            title: this.title,
+            start: this.chapterStart,
+            end: this.chapterFinish,
+            type: this.type,
+            dtc: this.dtc,
+        }
     }
 
 }

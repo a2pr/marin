@@ -1,8 +1,12 @@
 import express from "express";
 import cors from "cors";
-import {loadEnvironment} from './Config/environment.js'
+import loadEnvironment from './Config/environment.js'
+import OrderController from './Controller/OrderController.js'
 
 loadEnvironment()
+import {connection} from "./Database/connection.js";
+let controller = new OrderController(new connection);
+
 
 const app = express();
 const corsOptions = {
@@ -17,6 +21,8 @@ app.use(express.urlencoded({extended: true}));
 app.get("/", (req, res) => {
     res.json({message: "Welcome to application."});
 });
+
+app.get("/order/:id", controller.getById)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
