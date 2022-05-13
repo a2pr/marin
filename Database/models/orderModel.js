@@ -1,4 +1,4 @@
-class OrderModel {
+export default class OrderModel {
     constructor(id, title, chapterStart, chapterFinish, type, dtc) {
         this._title = title;
         this._chapterStart = chapterStart;

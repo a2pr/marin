@@ -5,7 +5,7 @@ import OrderController from './Controller/OrderController.js'
 
 loadEnvironment()
 import {connection} from "./Database/connection.js";
-let controller = new OrderController(new connection);
+let controller = new OrderController(new connection());
 
 
 const app = express();

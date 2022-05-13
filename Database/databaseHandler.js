@@ -1,4 +1,4 @@
-class DatabaseHandler {
+export default class DatabaseHandler {
     constructor(connection) {
         this.connection = connection
     }

@@ -1,4 +1,4 @@
-import OrderRepository from '../Repository/orderRepository'
+import OrderRepository from "../Repository/orderRepository.js";
 
 export default class OrderController{
     constructor(connection) {
