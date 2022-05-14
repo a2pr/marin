@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import loadEnvironment from './Config/environment.js'
 import OrderController from './Controller/OrderController.js'
+import OrderRepository from "./Repository/orderRepository.js";
 
 loadEnvironment()
-import {connection} from "./Database/connection.js";
-let controller = new OrderController(new connection());
+let controller = new OrderController(new OrderRepository());
 
 
 const app = express();
@@ -23,9 +23,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/order/:id", controller.getById)
-app.get("/orders", controller.get)
+app.get("/orders", controller.getOrders)
 app.get("/orders/title", controller.getByTitle)
-app.post("/order", controller.postNew(req, res, next))
+app.post("/order", controller.postNew)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

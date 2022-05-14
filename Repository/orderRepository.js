@@ -1,9 +1,10 @@
 import OrderModel from '../Database/models/orderModel.js'
 import DatabaseHandler from '../Database/databaseHandler.js'
+import {connection} from "../Database/connection.js";
 
 export default class OrderRepository {
-    constructor(connection) {
-        this.databaseHandler = new DatabaseHandler(connection)
+    constructor() {
+        this.databaseHandler = new DatabaseHandler(connection())
     }
 
     getOrderId(id) {
@@ -37,6 +38,7 @@ export default class OrderRepository {
     getOrders() {
         let sql = `SELECT *
                    FROM tracker.order`;
+        console.log(sql);
         let results = this.databaseHandler.makeQuery(sql);
 
         if (!results.length) {

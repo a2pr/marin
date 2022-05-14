@@ -1,13 +1,19 @@
-import OrderRepository from "../Repository/orderRepository.js";
 import OrderModel from "../Database/models/orderModel.js";
 
 export default class OrderController {
-    constructor(connection) {
-        this.orderRepository = new OrderRepository(connection);
+    constructor(orderRepo) {
+        this.orderRepository = orderRepo;
+        console.log(this.orderRepository);
     }
 
-    get(req, res, next) {
-        res.status(200).json(this.orderRepository.getOrders())
+    getOrders(req, res, next) {
+        /**@todo not working
+         *
+         */
+        console.log(this)
+        let orders = orderRepository.getOrders();
+        console.log(orders)
+        res.status(200).json()
         next();
     }
 
