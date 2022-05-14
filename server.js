@@ -23,6 +23,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/order/:id", controller.getById)
+app.get("/orders", controller.get)
+app.get("/orders/title", controller.getByTitle)
+app.post("/order", controller.postNew(req, res, next))
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

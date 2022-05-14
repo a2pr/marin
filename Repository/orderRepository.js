@@ -19,6 +19,21 @@ export default class OrderRepository {
         return this.processOrder(results)
     }
 
+    getOrdersTitle(title) {
+        let sql = ` SELECT * 
+                    FROM tracker.order
+                    WHERE title like "%${title}%"`;
+        let results = this.databaseHandler.makeQuery(sql)
+
+        if (!results.length) {
+            return [];
+        }
+
+        return results.map((result) => {
+            this.processOrder(result)
+        });
+    }
+
     getOrders() {
         let sql = `SELECT *
                    FROM tracker.order`;

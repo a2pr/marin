@@ -8,6 +8,16 @@ export default class OrderModel {
         this._id = id;
     }
 
+    static fromRequest(requestBody) {
+        this._title = requestBody.title;
+        this._chapterStart = requestBody.chapterStart;
+        this._chapterFinish = requestBody.chapterFinish;
+        this._type = requestBody.type;
+        this._dtc = this.initDate();
+
+        return this
+    }
+
     get id() {
         return this._id;
     }
@@ -61,6 +71,12 @@ export default class OrderModel {
             type: this.type,
             dtc: this.dtc,
         }
+    }
+
+    static initDate() {
+        let date = new Date();
+
+        return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
     }
 
 }
