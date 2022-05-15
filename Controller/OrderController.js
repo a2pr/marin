@@ -1,48 +1,39 @@
 import OrderModel from "../Database/models/orderModel.js";
+import * as orderRepository from "../Repository/orderRepository.js";
 
-export default class OrderController {
-    constructor(orderRepo) {
-        this.orderRepository = orderRepo;
-        console.log(this.orderRepository);
-    }
+export const getOrders = (req, res, next) => {
 
-    getOrders(req, res, next) {
-        /**@todo not working
-         *
-         */
-        console.log(this)
-        let orders = orderRepository.getOrders();
-        console.log(orders)
-        res.status(200).json()
-        next();
-    }
+    let orders = orderRepository.getAllOrders();
+    console.log(orders)
+    res.status(200).json()
+    next();
+}
 
-    getById(req, res, next) {
-        console.log(`get request by ${req.params.id}`)
+export const getById = (req, res, next) => {
+    console.log(`get request by ${req.params.id}`)
 
-        res.status(200).json(
-            this.orderRepository.getOrderId(req.body.id)
-        )
+    res.status(200).json(
+        orderRepository.getOrderId(req.body.id)
+    )
 
-        next();
-    }
+    next();
+}
 
-    getByTitle(req, res, next) {
-        console.log(`get request by title`)
+export const getByTitle = (req, res, next) => {
+    console.log(`get request by title`)
 
-        res.status(200).json(
-            this.orderRepository.getOrdersTitle(req.body.title)
-        )
-        next();
-    }
+    res.status(200).json(
+        orderRepository.getOrdersTitle(req.body.title)
+    )
+    next();
+}
 
-    postNew(req, res, next) {
-        console.log(`post new`)
+export const postNew = (req, res, next) => {
+    console.log(`post new`)
 
-        let requestOrder = OrderModel.fromRequest(req.body)
-        res.status(200).json(
-            this.orderRepository.insertOrder(requestOrder)
-        )
-        next();
-    }
+    let requestOrder = OrderModel.fromRequest(req.body)
+    res.status(200).json(
+        orderRepository.insertOrder(requestOrder)
+    )
+    next();
 }

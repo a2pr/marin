@@ -1,11 +1,9 @@
 import express from "express";
 import cors from "cors";
 import loadEnvironment from './Config/environment.js'
-import OrderController from './Controller/OrderController.js'
-import OrderRepository from "./Repository/orderRepository.js";
+import * as orderController from './Controller/OrderController.js'
 
 loadEnvironment()
-let controller = new OrderController(new OrderRepository());
 
 
 const app = express();
@@ -22,10 +20,10 @@ app.get("/", (req, res) => {
     res.json({message: "Welcome to application."});
 });
 
-app.get("/order/:id", controller.getById)
-app.get("/orders", controller.getOrders)
-app.get("/orders/title", controller.getByTitle)
-app.post("/order", controller.postNew)
+app.get("/order/:id", orderController.getById)
+app.get("/orders", orderController.getOrders)
+app.get("/orders/title", orderController.getByTitle)
+app.post("/order", orderController.postNew)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
