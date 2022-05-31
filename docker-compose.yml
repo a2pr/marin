@@ -7,8 +7,18 @@ services:
     env_file: .env
     depends_on:
       - db
+    volumes:
+      - /app/node_modules
+      - ./:/app
 
   db:
     image: mysql:8.0
     restart: always
     env_file: .database.env
+    volumes:
+      - db-volume:/var/lib/mysql
+    ports:
+      - "33061:3306"
+
+volumes:
+  db-volume:

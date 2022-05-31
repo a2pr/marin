@@ -6,6 +6,4 @@ COPY . .
 
 RUN npm install
 
-COPY server.js .
-
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "dev"]
