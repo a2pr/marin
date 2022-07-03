@@ -1,9 +1,10 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
 export function connection() {
-    return mysql.createConnection({
+    return new mysql.createConnection({
         host: process.env.DATABASE_CONNECTION,
         user: process.env.DATABASE_USER,
-        password: process.env.DATABASE_PASSWORD
+        password: process.env.DATABASE_PASSWORD,
+        port: 3306
     })
 }

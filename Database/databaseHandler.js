@@ -40,7 +40,7 @@ export default class DatabaseHandler {
                 console.error('error connecting: ' + err.stack);
                 return;
             }
-            console.log('connected as id ' + this.connection.threadId);
+            ///console.log('connected as id ' + this.connection.threadId);
         });
     }
 

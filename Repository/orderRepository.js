@@ -16,8 +16,8 @@ function processOrder(result) {
 
 const getOrderId = (id) => {
     let sql = `SELECT *
-               FROM ${process.env.DATABASE_CONNECTION}.order
-               where id = ${id}`;
+               FROM ${process.env.DATABASE_NAME}.order
+               WHERE id = ${id}`;
 
     let databaseHandler = new DatabaseHandler(connection())
     let results = databaseHandler.makeQuery(sql);
@@ -31,7 +31,7 @@ const getOrderId = (id) => {
 
 const getOrdersTitle = (title) => {
     let sql = ` SELECT *
-                FROM ${process.env.DATABASE_CONNECTION}.order
+                FROM ${process.env.DATABASE_NAME}.order
                 WHERE title like "%${title}%"`;
 
     let databaseHandler = new DatabaseHandler(connection())
@@ -47,8 +47,7 @@ const getOrdersTitle = (title) => {
 }
 
 const getAllOrders = () => {
-    let sql = `SELECT *
-               FROM ${process.env.DATABASE_CONNECTION}.order`;
+    let sql = `SELECT * FROM ${process.env.DATABASE_NAME}.order`;
     console.log(sql);
 
     let databaseHandler = new DatabaseHandler(connection())
@@ -64,7 +63,7 @@ const getAllOrders = () => {
 }
 
 const insertOrder = (orderModel) => {
-    let sql = `Insert into ${process.env.DATABASE_CONNECTION}.order ('title', 'chapter_start', 'chapter_finish', 'type', 'dtc')
+    let sql = `Insert into ${process.env.DATABASE_NAME}.order ('title', 'chapter_start', 'chapter_finish', 'type', 'dtc')
                values (order.title, order.chapter_start, order.chapter_finish, order.type, order.dtc)`
 
 
