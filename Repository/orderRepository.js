@@ -14,9 +14,12 @@ function processOrder(result) {
 
 }
 
+const ORDER_TABLE = "`order`"
+const DATABASE_FOR_QUERY = `\`${process.env.DATABASE_NAME}\``;
+
 const getOrderId = (id) => {
     let sql = `SELECT *
-               FROM ${process.env.DATABASE_NAME}.order
+               FROM ${DATABASE_FOR_QUERY}.${ORDER_TABLE}
                WHERE id = ${id}`;
 
     let databaseHandler = new DatabaseHandler(connection())
@@ -31,7 +34,7 @@ const getOrderId = (id) => {
 
 const getOrdersTitle = (title) => {
     let sql = ` SELECT *
-                FROM ${process.env.DATABASE_NAME}.order
+                FROM ${DATABASE_FOR_QUERY}.${ORDER_TABLE}
                 WHERE title like "%${title}%"`;
 
     let databaseHandler = new DatabaseHandler(connection())
@@ -47,7 +50,7 @@ const getOrdersTitle = (title) => {
 }
 
 const getAllOrders = () => {
-    let sql = `SELECT * FROM ${process.env.DATABASE_NAME}.order`;
+    let sql = `SELECT * FROM ${DATABASE_FOR_QUERY}.${ORDER_TABLE}`;
     console.log(sql);
 
     let databaseHandler = new DatabaseHandler(connection())
@@ -63,14 +66,14 @@ const getAllOrders = () => {
 }
 
 const insertOrder = (orderModel) => {
-    let sql = `Insert into ${process.env.DATABASE_NAME}.order ('title', 'chapter_start', 'chapter_finish', 'type', 'dtc')
-               values (order.title, order.chapter_start, order.chapter_finish, order.type, order.dtc)`
+    console.log(orderModel)
+    let sql = `Insert into ${DATABASE_FOR_QUERY}.${ORDER_TABLE} (\`title\`, \`chapter_start\`, \`chapter_finish\`, \`type\`, \`dtc\`) values ("${orderModel._title}", "${orderModel._chapterStart}", "${orderModel._chapterFinish}", "${orderModel._type}", CURRENT_TIMESTAMP)`;
 
-
+    console.log(sql);
     let databaseHandler = new DatabaseHandler(connection())
     let results = databaseHandler.makeInsert(sql);
 
-    return results.insertId;
+    return results;
 }
 
 export {getOrderId, getOrdersTitle, getAllOrders, insertOrder}

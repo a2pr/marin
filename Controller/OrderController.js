@@ -5,7 +5,7 @@ export const getOrders = (req, res, next) => {
 
     let orders = orderRepository.getAllOrders();
     console.log(orders)
-    res.status(200).json()
+    res.status(200).json(orders)
     next();
 }
 

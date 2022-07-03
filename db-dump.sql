@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `tracker-db`.`order` (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    chapter_start INT NOT NULL,
+    chapter_finish INT,
+    type VARCHAR(255) NOT NULL,
+    dtc TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

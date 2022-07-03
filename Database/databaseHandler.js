@@ -26,12 +26,10 @@ export default class DatabaseHandler {
                 throw error;
             }
             console.info(`Insert new entry ${results.affectedRows}`)
-            queryResult = results;
         })
 
         this.end();
-
-        return queryResult;
+        return true;
     }
 
     connect() {
